@@ -31,11 +31,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(model_name="revelation", name="mysteries_added",
-                            field=models.ManyToManyField(blank=True,
-                                                         help_text=b'Categories of revelations with summaries',
-                                                         related_name='revelations', to='character.Mystery')),
-        migrations.RunPython(replace_mysteries_without_through_model),
+        # migrations.RunPython(replace_mysteries_without_through_model),
         migrations.RemoveField(
             model_name='revelationformystery',
             name='mystery',
@@ -61,5 +57,9 @@ class Migration(migrations.Migration):
         migrations.DeleteModel(
             name='RevelationForMystery',
         ),
-        migrations.RenameField(model_name='revelation', old_name="mysteries_added", new_name="mysteries")
+        migrations.AddField(model_name="revelation", name="mysteries",
+                    field=models.ManyToManyField(blank=True,
+                                                 help_text=b'Categories of revelations with summaries',
+                                                 related_name='revelations', to='character.Mystery')),
+        # migrations.RenameField(model_name='revelation', old_name="mysteries_added", new_name="mysteries")
     ]

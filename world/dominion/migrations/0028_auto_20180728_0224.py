@@ -144,25 +144,25 @@ class Migration(migrations.Migration):
                                          to='dominion.Organization'),
         ),
         # convert PraiseOrCondemn.target to the assetowner of previous targets
-        migrations.AddField(
-            model_name='praiseorcondemn', name='temporary',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='so_temporary',
-                                    to='dominion.AssetOwner', null=True)
-        ),
-        migrations.RunPython(store_previous_target_asset_owners_in_temp_field),
+        # migrations.AddField(
+        #     model_name='praiseorcondemn', name='temporary',
+        #     field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='so_temporary',
+        #                             to='dominion.AssetOwner', null=True)
+        # ),
+        # migrations.RunPython(store_previous_target_asset_owners_in_temp_field),
         migrations.AlterField(
             model_name='praiseorcondemn',
             name='target',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='praises_received',
                                     to='dominion.AssetOwner'),
         ),
-        migrations.RunPython(switch_asset_owners_into_new_field),
-        migrations.RemoveField(
-            model_name='praiseorcondemn',
-            name='temporary'
-        ),
+        # migrations.RunPython(switch_asset_owners_into_new_field),
+        # migrations.RemoveField(
+        #     model_name='praiseorcondemn',
+        #     name='temporary'
+        # ),
         # convert all participants of previous events into new format
-        migrations.RunPython(populate_participants),
+        # migrations.RunPython(populate_participants),
         migrations.RemoveField(
             model_name='rpevent',
             name='gms',

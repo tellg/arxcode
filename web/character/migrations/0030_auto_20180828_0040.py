@@ -201,7 +201,7 @@ class Migration(migrations.Migration):
                                     help_text=b"An in-game object that this Clue is a secret or backstory for",
                                     related_name='clues', to='objects.ObjectDB'),
         ),
-        migrations.RunPython(set_clue_authors),
+        # migrations.RunPython(set_clue_authors),
         migrations.AddField(
             model_name='revelation',
             name='author',
@@ -235,7 +235,7 @@ class Migration(migrations.Migration):
             name='progress',
             field=models.IntegerField(default=0, help_text=b'Progress made towards a discovery.'),
         ),
-        migrations.RunPython(add_progress_to_investigations),
+        # migrations.RunPython(add_progress_to_investigations),
         migrations.AlterField(
             model_name='clue',
             name='characters',
@@ -297,7 +297,7 @@ class Migration(migrations.Migration):
             name='search_tags',
             field=models.ManyToManyField(blank=True, related_name='revelations', to='character.SearchTag'),
         ),
-        migrations.RunPython(transfer_lore_topics_to_revelation_gmnotes),
+        # migrations.RunPython(transfer_lore_topics_to_revelation_gmnotes),
         migrations.AlterField(
             model_name='clue',
             name='search_tags',
@@ -314,8 +314,8 @@ class Migration(migrations.Migration):
             model_name='clue',
             name='event',
         ),
-        migrations.RunPython(convert_secrets_to_clues),
-        migrations.RunPython(convert_visions_to_clues),
+        # migrations.RunPython(convert_secrets_to_clues),
+        # migrations.RunPython(convert_visions_to_clues),
         migrations.AddField(
             model_name='searchtag',
             name='game_objects',
@@ -352,7 +352,7 @@ class Migration(migrations.Migration):
             name='clueplotinvolvement',
             unique_together=set([('clue', 'plot')]),
         ),
-        migrations.RunPython(convert_gmnotes_to_clue_fields),
+        # migrations.RunPython(convert_gmnotes_to_clue_fields),
         migrations.AlterField(
             model_name='revelation',
             name='characters',

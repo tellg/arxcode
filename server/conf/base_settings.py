@@ -61,7 +61,7 @@ DEFAULT_CHANNELS = [
     ]
 
 DATABASES = {
-    'default': {
+    'convert': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(GAME_DIR, 'server', 'evennia.db3'),
         'USER': '',
@@ -69,11 +69,23 @@ DATABASES = {
         'HOST': '',
         'PORT': '',
         'OPTIONS': {'timeout': 25},
-        }}
+    },
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': config('DB_NAME', default=''),
+        'USER': config('DB_USER', default=''),
+        'PASSWORD': config('DB_PASS', default=''),
+        'HOST': 'localhost',
+        'PORT': ''    # use default
+    }
+}
 
 TEMPLATES[0]['OPTIONS']['context_processors'] += [
     'web.character.context_processors.consts']
 TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
+
+SERIALIZATION_MODULES = {'raw_yaml': 'server.utils.serializers.yaml_raw_serializer'}
+OBJECT_SERIALIZATION_STRATEGY = {'raw_yaml': 'server.utils.serializers.arx_object_strategy.ObjectSerializationStrategy'}
 
 # Global and Evennia-specific apps. This ties everything together so we can
 # refer to app models and perform DB syncs.
